@@ -17,6 +17,7 @@ DecksTabBarIcon.propTypes = {
 const NewDeckTabBarIcon = ({ tintColor }) => (
   <FontAwesome name="plus-square" size={30} color={tintColor} />
 );
+
 NewDeckTabBarIcon.propTypes = {
   tintColor: PropTypes.string.isRequired,
 };

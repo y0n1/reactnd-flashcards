@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cloneDeep from 'lodash.clonedeep';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { lightBlack, gray, purple } from '../utils/colors';
@@ -75,10 +76,12 @@ Deck.navigationOptions = ({ navigation }) => {
 };
 
 function mapStateToProps({ decks }, { navigation }) {
-  const { title } = navigation.state.params.deck;
-  const deck = decks.find(item => item.title === title);
+  const { deck } = navigation.state.params;
+  const { title } = deck;
+  const byTitle = currentDeck => currentDeck.title === title;
+  const clonedDeck = cloneDeep(decks.find(byTitle) || deck);
 
-  return { deck };
+  return { deck: clonedDeck };
 }
 
 export default connect(mapStateToProps)(Deck);

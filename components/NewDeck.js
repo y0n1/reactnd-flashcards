@@ -47,7 +47,17 @@ class NewDeck extends Component {
 
     actions.addDeck({ title, cards: [] });
     this.setState(initialState);
-    navigation.dispatch(NavigationActions.back({ key: 'NewDeck' }));
+    navigation.dispatch(
+      NavigationActions.navigate({
+        routeName: 'Deck',
+        params: {
+          deck: {
+            title,
+            cards: [],
+          },
+        },
+      }),
+    );
   };
 
   render() {
